@@ -116,10 +116,12 @@ def main():
         user_input = input(INPUT_STRING)
         if user_input == '1':
             create_table(con)
+            
         elif user_input == '2':
             users = read_csv()
             print(users)
             insert_users(con, users)
+            
         elif user_input == '3':
             input_data = []
             for c in COLUMNS:
@@ -127,24 +129,30 @@ def main():
                 input_data.append(column_value)
             users = [tuple(input_data)]
             insert_users(con, users)
+            
         elif user_input == '4':
             select_users(con)
+            
         elif user_input == '5':
             user_id = input("Enter the id of user: ")
             if user_id.isnumeric():
                 select_user_by_id(con, user_id)
+                
         elif user_input == '6':
             no_of_users = input("Enter the number of users to fetch: ")
             if no_of_users.isnumeric() and int(no_of_users) > 0:
                 select_users(con, no_of_users=int(no_of_users))
+                
         elif user_input == '7':
             confirmation = input("Are you sure you want to delete all users? (y/n): ")
             if confirmation == "y":
                 delete_users(con)
+                
         elif user_input == '8':
             user_id = input("Enter the id of user: ")
             if user_id.isnumeric():
                 delete_user_by_id(con, user_id)
+                
         elif user_input == '9':
             user_id = input("Enter the id of user: ")
             if user_id.isnumeric():
@@ -152,9 +160,11 @@ def main():
                 if column_name in COLUMNS:
                     column_value = input(f"Enter the value of {column_name}: ")
                     update_user_by_id(con, user_id, column_name, column_value)
+                    
         else:
             print("Exiting...")
             break
+           
     con.close()
 
 INPUT_STRING = """
